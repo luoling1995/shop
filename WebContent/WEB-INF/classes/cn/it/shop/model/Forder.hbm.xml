@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-7-6 13:57:24 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="cn.it.shop.model.Forder" table="FORDER">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+        <property name="phone" type="java.lang.String">
+            <column name="PHONE" />
+        </property>
+        <property name="remark" type="java.lang.String">
+            <column name="REMARK" />
+        </property>
+        <property name="date" type="java.util.Date">
+            <column name="DATE" />
+        </property>
+        <property name="total" type="double">
+            <column name="TOTAL" />
+        </property>
+        <property name="post" type="java.lang.String">
+            <column name="POST" />
+        </property>
+        <property name="address" type="java.lang.String">
+            <column name="ADDRESS" />
+        </property>
+        <many-to-one name="user" class="cn.it.shop.model.User" fetch="join">
+            <column name="uid" />
+        </many-to-one>
+        <many-to-one name="status" class="cn.it.shop.model.Status" fetch="join">
+            <column name="sid" />
+        </many-to-one>
+        <!-- 
+        	查询有关：lazy="true"是否支持懒加载      fetch="join"关联对象的抓取策略，为了提升性能此处不应该设置
+        	更新有关：cascade="all"是否支持级联操作，在hibernate中有独特级联操作    inverse="flase"反向，指定谁来维护外键，
+        	true表示不维护，建议为true
+         -->
+         <!-- 
+         	<set name="sorderSet" cascade="all" fetch="join" inverse="true" lazy="true">
+	        	代表的是外键 
+	        	<key>
+	        		<column name="fid"></column>
+	        	</key>
+	        	<one-to-many class="cn.it.shop.model.Sorder"/>
+	        </set>
+          -->
+          
+          <list name="sorderList" inverse="true" cascade="all" lazy="false">
+          	<key>
+          		<column name="fid"></column>
+          	</key>
+          	<index column="forder_sorder"></index>
+          	<one-to-many class="cn.it.shop.model.Sorder"/>
+          </list>
+        
+
+    </class>
+</hibernate-mapping>

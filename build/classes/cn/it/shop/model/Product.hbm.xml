@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-6-2 17:15:04 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="cn.it.shop.model.Product" table="PRODUCT">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+        <property name="price" type="java.lang.Double">
+            <column name="PRICE" />
+        </property>
+        <property name="pic" type="java.lang.String">
+            <column name="PIC" />
+        </property>
+        <property name="remark" type="java.lang.String">
+            <column name="REMARK" />
+        </property>
+        <property name="xremark" type="java.lang.String">
+            <column name="XREMARK" />
+        </property>
+        <property name="date" type="java.sql.Timestamp">
+            <column name="DATE" length="19" />
+        </property>
+        <property name="commend" type="java.lang.Boolean">
+            <column name="COMMEND" />
+        </property>
+        <property name="open" type="java.lang.Boolean">
+            <column name="OPEN" />
+        </property>
+        <many-to-one name="category" class="cn.it.shop.model.Category">
+            <column name="cid" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

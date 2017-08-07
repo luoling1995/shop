@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-5-12 20:15:04 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping package="cn.it.shop.model">
+    <class name="Category" table="CATEGORY">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="type" type="java.lang.String">
+            <column name="TYPE" />
+        </property>
+        <property name="hot" type="java.lang.Boolean">
+            <column name="HOT" />
+        </property>
+        <!-- 
+        	N+1:首先发出一条语句查询当前对象，然后发出N条语句查询关联对象，N不确定，因此效率比较低
+        	lazy:是否及时加载关联对象，如果为FALSE则及时加载    fetch:什么样的方式加载关联对象，可以选择select（默认）和join
+        	注意在many-to-one：的情况下：join是无效的
+        	解决方案：自己写hql语句取代基于xml的配置，在任何情况下不要配置：lazy="false" fetch="join"
+         -->
+        <many-to-one name="account" class="Account">
+        	<column name="aid"></column>
+        </many-to-one>
+    </class>
+</hibernate-mapping>
